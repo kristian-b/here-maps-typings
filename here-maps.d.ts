@@ -12499,7 +12499,7 @@ declare namespace H.ui.base {
         * Adds a child element to be rendered within the container element.
         * @param {H.ui.base.Element} child - the child element to be added
         */
-        addChild(child: H.ui.base.Element): H.ui.base.Container;
+        addChild(child: typeof H.ui.base.Element): H.ui.base.Container;
 
         /**
         * Returns the child collection of this container.

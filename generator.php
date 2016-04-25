@@ -778,6 +778,15 @@ $namespacesConfig = array(
             ),
             'Element' => array(),
             'OverlayPanel' => array(
+                'methods' => array(
+                    'addChild' => array(
+                        'parameters' => array(
+                            'child' => array(
+                                'type' => 'typeof H.ui.base.Element'
+                            )
+                        )
+                    ),
+                ),
                 'elements' => array(
                     'State' => array(),
                 )
