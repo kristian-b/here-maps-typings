@@ -1,0 +1,12 @@
+{
+  "name": "@types/here-maps-typings",
+  "dependencies": {},
+  "deprecated": false,
+  "description": "TypeScript definitions for here maps",
+  "license": "MIT",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kristian-b/here-maps-typings.git"
+  }
+}
