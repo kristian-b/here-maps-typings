@@ -2,17 +2,22 @@
   "compilerOptions": {
     "module": "commonjs",
     "lib": [
-      "es5"
+      "es5",
+      "dom"
     ],
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "strictFunctionTypes": true,
     "baseUrl": "../",
     "typeRoots": [
       "../"
     ],
-    "types": []
+    "types": [],
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true
   },
   "files": [
-    "here-maps.d.ts"
+    "index.d.ts"
   ]
 }

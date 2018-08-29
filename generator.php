@@ -10,8 +10,8 @@
  * Set config
  */
 $exportDir = __DIR__;
-$exportFile = $exportDir . '/here-maps.d.ts';
-$baseDocUrl = 'https://developer.here.com/javascript-apis/documentation/v3/maps/topics_api_nlp/';
+$exportFile = $exportDir . '/index.d.ts';
+$baseDocUrl = 'https://developer.here.com/documentation/maps/topics_api/';
 
 /**
  * Defined namespaces or elements. For some elements we have to correct the online available doc (e.g. wrong isOptional status, wrong implements)

@@ -8,5 +8,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/kristian-b/here-maps-typings.git"
-  }
+  },
+  "typeScriptVersion": "2.0"
 }
