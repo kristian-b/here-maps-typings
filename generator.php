@@ -1030,7 +1030,7 @@ function fetchMethodInformation(\DOMNode $methodContainerElement, $elementConfig
 /**
  * @param \DOMDocument $document
  * @param array $elementConfig
- * @return array
+ * @return array|bool
  */
 function fetchClassInformation(\DOMDocument $document, $elementConfig)
 {
@@ -1043,18 +1043,18 @@ function fetchClassInformation(\DOMDocument $document, $elementConfig)
 
     $xpath = new DOMXPath($document);
 
-    if ($xpath->query('//div[@class="class summary"]')->length > 0) {
-        $containerElement = $xpath->query('//div[@class="class summary"]')->item(0);
+    if ($xpath->query('//section[@class="class summary"]')->length > 0) {
+        $containerElement = $xpath->query('//section[@class="class summary"]')->item(0);
         $classInformation['type'] = 'class';
-    } else if ($xpath->query('//div[@class="interface summary"]')->length > 0) {
+    } else if ($xpath->query('//section[@class="interface summary"]')->length > 0) {
         $containerElement =
-            $xpath->query('//div[@class="interface summary"]')->item(0);
+            $xpath->query('//section[@class="interface summary"]')->item(0);
         $classInformation['type'] = 'interface';
-    } else if ($xpath->query('//div[@class="typedef summary"]')->length > 0) {
-        $containerElement = $xpath->query('//div[@class="typedef summary"]')->item(0);
+    } else if ($xpath->query('//section[@class="typedef summary"]')->length > 0) {
+        $containerElement = $xpath->query('//section[@class="typedef summary"]')->item(0);
         $classInformation['type'] = 'typedef';
-    } else if ($xpath->query('//div[@class="enumeration summary"]')->length > 0) {
-        $containerElement = $xpath->query('//div[@class="enumeration summary"]')->item(0);
+    } else if ($xpath->query('//section[@class="enumeration summary"]')->length > 0) {
+        $containerElement = $xpath->query('//section[@class="enumeration summary"]')->item(0);
         $classInformation['type'] = 'enumeration';
     } else {
         return false;
@@ -1232,7 +1232,7 @@ function writeNamespace($namespaceName, $fileName, $baseDocUrl, $elements)
         fwrite($fHandle, "\n\n");
 
         // write properties
-        $propertyContainerElements = $xpath->query('//div[@class="' . $classInformation['type'] . '-properties details"]/div[@class="property"]');
+        $propertyContainerElements = $xpath->query('//section[@class="' . $classInformation['type'] . '-properties details"]/div[@class="property"]');
         if ($propertyContainerElements) {
             foreach ($propertyContainerElements AS $propertyContainerElement) {
                 /**
@@ -1259,7 +1259,7 @@ function writeNamespace($namespaceName, $fileName, $baseDocUrl, $elements)
         }
 
         // write constructor
-        $constructorParameterElements = $xpath->query('//div[@class="' . $classInformation['type'] . '-constructor details"]/div[@class="parameters"]/dl/*');
+        $constructorParameterElements = $xpath->query('//section[@class="' . $classInformation['type'] . '-constructor details"]/div[@class="parameters"]/dl/*');
         if ($constructorParameterElements AND $constructorParameterElements->length > 0) {
             writeMethod(
                 $fHandle,
@@ -1278,7 +1278,7 @@ function writeNamespace($namespaceName, $fileName, $baseDocUrl, $elements)
         }
 
         // write methods
-        $methodContainerElements = $xpath->query('//div[@class="' . $classInformation['type'] . '-methods details"]/div[@class="method"]');
+        $methodContainerElements = $xpath->query('//section[@class="' . $classInformation['type'] . '-methods details"]/div[@class="method"]');
         if ($methodContainerElements) {
             foreach ($methodContainerElements AS $methodContainerElement) {
                 /**
@@ -1367,6 +1367,9 @@ function writeMethod($fHandle, $methodName, $methodDescription, $methodReturnTyp
     $method = $methodName . '(' . implode(', ', $parameterStrings) . ')';
     if (!empty($methodReturnType)) {
         $method .= ': ' . $methodReturnType;
+    }
+    else {
+        $method .= ': void';
     }
     $method .= ';';
     $lines[] = $method;
